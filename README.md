@@ -6,6 +6,9 @@ In addition to delivering accurate predictions, this project is built to **impre
 
 ---
 
+
+---
+
 ## 🌟 Key Highlights
 
 ✅ **Modular Architecture**  
@@ -22,15 +25,15 @@ In addition to delivering accurate predictions, this project is built to **impre
 
 ### 1️⃣ Environment Setup
 
-bash
+```bash
 python -m venv vehicle-env
 source vehicle-env/bin/activate 
 pip install -r requirements.txt
 pip list  # Verify installed packages
-
+```
 
 - Create the project folder structure.
-- Add local package support using setup.py and pyproject.toml. 
+- Add local package support using `setup.py` and `pyproject.toml`. 
 
 ---
 
@@ -38,73 +41,73 @@ pip list  # Verify installed packages
 
 1. Create a **MongoDB Atlas** account.
 2. Launch a free **M0 cluster**.
-3. Add your **username/password** and set IP access to 0.0.0.0/0.
+3. Add your **username/password** and set IP access to `0.0.0.0/0`.
 4. Copy your **Python connection string**.
-5. Create and run notebooks/mongoDB_demo.ipynb to upload your dataset.
+5. Create and run `notebooks/mongoDB_demo.ipynb` to upload your dataset.
 6. Confirm upload via: *Clusters → Collections → Browse Data*.
 
 ---
 
 ## 🧪 Logging, Exception Handling, & EDA
 
-- Implemented custom logging and exception handling (demo.py)
-- Performed **Exploratory Data Analysis (EDA)** and feature engineering in notebooks/
+- Implemented custom logging and exception handling (`demo.py`)
+- Performed **Exploratory Data Analysis (EDA)** and feature engineering in `notebooks/`
 
 ---
 
 ## 📅 Data Ingestion
 
-🔹 MongoDB connection handled in: configuration/mongo_db_connection.py  
+🔹 MongoDB connection handled in: `configuration/mongo_db_connection.py`  
 🔹 Created pipeline entities:  
-   - entity/config_entity.py  
-   - entity/artifact_entity.py  
-🔹 Used data_access/proj1_data.py for DB read/write  
-🔹 Ingestion logic in: components/data_ingestion.py
+   - `entity/config_entity.py`  
+   - `entity/artifact_entity.py`  
+🔹 Used `data_access/proj1_data.py` for DB read/write  
+🔹 Ingestion logic in: `components/data_ingestion.py`
 
 #### 🔐 Environment Variables Setup
 
-bash
+```bash
 # Linux/macOS
 export MONGODB_URL="your_connection_string"
 echo $MONGODB_URL
 
 # Windows
 setx MONGODB_URL "your_connection_string"
-
+```
 
 ---
 
 ## ✅ Data Validation, Transformation & Model Training
 
-📁 Schema: config/schema.yaml  
+📁 Schema: `config/schema.yaml`  
 📌 Modules:  
-- Validation: components/data_validation.py  
-- Transformation: components/data_transformation.py  
-- Model Training: components/model_trainer.py
+- Validation: `components/data_validation.py`  
+- Transformation: `components/data_transformation.py`  
+- Model Training: `components/model_trainer.py`
 
 ---
 
 ## ☁️ AWS S3 for Model Registry
 
-1. Create an **IAM User** (firstproj) with AdministratorAccess.
+1. Create an **IAM User** (`firstproj`) with `AdministratorAccess`.
 2. Download and securely store **Access Keys**.
 3. Export keys as environment variables:
 
-bash
+```bash
 export AWS_ACCESS_KEY_ID="your_key"
 export AWS_SECRET_ACCESS_KEY="your_secret"
+```
 
-
-4. Create S3 Bucket: my-model-mlopsproj (region: us-east-1)
-5. Setup S3 connection in: configuration/aws_connection.py
+4. Create S3 Bucket: `my-model-mlopsproj` (region: `us-east-1`)
+5. Setup S3 connection in: `configuration/aws_connection.py`
 
 📌 Constants to define:
 
-python
+```python
 MODEL_EVALUATION_CHANGED_THRESHOLD_SCORE = 0.02
 MODEL_BUCKET_NAME = "my-model-mlopsproj"
 MODEL_PUSHER_S3_KEY = "model-registry"
-
+```
 
 ---
 
@@ -117,17 +120,18 @@ MODEL_PUSHER_S3_KEY = "model-registry"
 
 ## 🧠 FastAPI-based Realtime Prediction
 
-1. Build FastAPI interface in app.py
+1. Build FastAPI interface in `app.py`
 2. Create web UI using:
 
+```
 templates/
 static/
-
+```
 
 - Endpoints:
-  - /: Home Page
-  - /predict: Make predictions
-  - /training: Trigger training
+  - `/`: Home Page
+  - `/predict`: Make predictions
+  - `/training`: Trigger training
 
 ---
 
@@ -136,33 +140,33 @@ static/
 ### 🧱 Setup Steps:
 
 1. **Dockerize App**:
-   - Dockerfile
-   - .dockerignore
+   - `Dockerfile`
+   - `.dockerignore`
 
 2. **CI/CD Workflow**:
-   - .github/workflows/aws.yaml
+   - `.github/workflows/aws.yaml`
 
 3. **GitHub → AWS Integration**:
    - Goto IAM User
    - Generate Access Keys
    - Add secrets to GitHub:
-     - AWS_ACCESS_KEY_ID
-     - AWS_SECRET_ACCESS_KEY
-     - AWS_DEFAULT_REGION
-     - ECR_REPO
+     - `AWS_ACCESS_KEY_ID`
+     - `AWS_SECRET_ACCESS_KEY`
+     - `AWS_DEFAULT_REGION`
+     - `ECR_REPO`
 
-4. **Create ECR Repo**: vehicleproj
+4. **Create ECR Repo**: `vehicleproj`
 
-5. **Launch EC2 Instance**: vehicledata-machine (Ubuntu)
+5. **Launch EC2 Instance**: `vehicledata-machine` (Ubuntu)
 
 6. **Install Docker on EC2**:
 
-bash
+```bash
 curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
 sudo usermod -aG docker ubuntu
 newgrp docker
-
+```
 
 7. **Add Self-Hosted Runner on EC2**:
    - Configure using GitHub Actions Settings → Runners
@@ -179,14 +183,16 @@ newgrp docker
 ✅ EC2 pulls image → launches container  
 
 🌐 **Access the app** at:  
-bash
+```bash
 http://<EC2-PUBLIC-IP>:5080
-
+```
 
 🔁 **Trigger model training**:  
-bash
+```bash
 http://<EC2-PUBLIC-IP>:5080/training
+```
 
+---
 
 ---
 
@@ -219,4 +225,8 @@ http://<EC2-PUBLIC-IP>:5080/training
 This project is an **industry-grade, cloud-integrated, CI/CD-enabled ML pipeline** that solves a **real-world classification problem**: predicting whether a user will opt for vehicle insurance. It's a complete ML system packaged with training, monitoring, deployment, and a realtime prediction interface — perfect for showcasing your **ML engineering and MLOps expertise**.
 
 ---
+
+
+
+
 
