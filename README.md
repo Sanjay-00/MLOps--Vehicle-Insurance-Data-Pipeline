@@ -142,7 +142,7 @@ static/
    - `.github/workflows/aws.yaml`
 
 3. **GitHub → AWS Integration**:
-   - Create IAM User: `usvisa-user`
+   - Goto IAM User
    - Generate Access Keys
    - Add secrets to GitHub:
      - `AWS_ACCESS_KEY_ID`
