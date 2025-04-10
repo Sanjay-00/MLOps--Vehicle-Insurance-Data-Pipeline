@@ -6,9 +6,6 @@ In addition to delivering accurate predictions, this project is built to **impre
 
 ---
 
-
----
-
 ## 🌟 Key Highlights
 
 ✅ **Modular Architecture**  
@@ -194,9 +191,7 @@ http://<EC2-PUBLIC-IP>:5080/training
 
 ---
 
----
-
-## 📂 Project Structure (Simplified)
+## 📂 Project Structure 
 
 ```
 ├── src/
@@ -222,7 +217,7 @@ http://<EC2-PUBLIC-IP>:5080/training
 
 ## 🙌 Summary
 
-This project is an **industry-grade, cloud-integrated, CI/CD-enabled ML pipeline** that solves a **real-world classification problem**: predicting whether a user will opt for vehicle insurance. It's a complete ML system packaged with training, monitoring, deployment, and a realtime prediction interface — perfect for showcasing your **ML engineering and MLOps expertise**.
+This project is an **industry-grade, cloud-integrated, CI/CD-enabled ML pipeline** that solves a **real-world classification problem**: predicting whether a user will opt for vehicle insurance. It's a complete ML system packaged with training, monitoring, deployment, and a realtime prediction interface — perfect for showcasing my **ML engineering and MLOps expertise**.
 
 ---
 
