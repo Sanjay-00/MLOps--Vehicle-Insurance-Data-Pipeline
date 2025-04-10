@@ -21,8 +21,8 @@ Welcome to the **Vehicle Insurance Prediction MLOps Project**! This project is d
 ### 1️⃣ Environment Setup
 
 ```bash
-conda create -n vehicle python=3.10 -y
-conda activate vehicle
+python -m venv vehicle-env
+source vehicle-env/bin/activate 
 pip install -r requirements.txt
 pip list  # Verify installed packages
 ```
